@@ -1,4 +1,4 @@
-package: github.com/zocimek/RPRS
+package: github.com/radepal/RPRS
 import:
 - package: github.com/labstack/echo
   version: ^3.0.0
@@ -14,6 +14,3 @@ import:
 - package: github.com/pivotal-golang/bytefmt
 - package: xi2.org/x/xz
 - package: github.com/radepal/go-yum
-- package: github.com/fsnotify/fsnotify
-- package: github.com/op/go-logging
-  version: ~1.0.0
