@@ -73,7 +73,7 @@ func Upload(c echo.Context) error {
 	rpmi := &RPMInfo{
 		Repo:    repo,
 		Name:    dst.Name(),
-		Size:    dst.Size(),
+		Size:    dst.Stat().Size(),
 		// Version: p.RPMVersion(),
 	}
 	return c.JSON(http.StatusOK, rpmi)
