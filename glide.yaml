@@ -1,4 +1,4 @@
-package: github.com/radepal/RPRS
+package: github.com/zocimek/RPRS
 import:
 - package: github.com/labstack/echo
   version: ^3.0.0

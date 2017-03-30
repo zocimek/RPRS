@@ -29,10 +29,12 @@ func Upload(c echo.Context) error {
 	// Source
 	file, err := c.FormFile("data")
 	if err != nil {
+		fmt.Println(err)
 		return err
 	}
 	src, err := file.Open()
 	if err != nil {
+		fmt.Println(err)
 		return err
 	}
 	defer src.Close()
@@ -44,17 +46,20 @@ func Upload(c echo.Context) error {
 	// Destination
 	dst, err := os.Create(path + string(os.PathSeparator) + file.Filename)
 	if err != nil {
+		fmt.Println(err)
 		return err
 	}
 	defer dst.Close()
 
 	// Copy
 	if _, err = io.Copy(dst, src); err != nil {
+		fmt.Println(err)
 		return err
 	}
 
 	p, err := rpm.OpenPackageFile(path + string(os.PathSeparator) + file.Filename)
 	if err != nil {
+		fmt.Println(err)
 		return err
 	}
 	rpmi := &RPMInfo{
