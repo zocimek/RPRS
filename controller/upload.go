@@ -2,7 +2,7 @@ package controller
 
 import (
 	"fmt"
-	"github.com/cavaliercoder/go-rpm"
+	// "github.com/cavaliercoder/go-rpm"
 	"github.com/labstack/echo"
 	"github.com/spf13/viper"
 	"io"
@@ -68,12 +68,21 @@ func Upload(c echo.Context) error {
 	// 	fmt.Print("Error opening package file: ")
 	// 	fmt.Println(err)
 	// 	return err
-	// }
+	// }	
+	fi, err := dst.Stat();
+	if err != nil {
+		fmt.Print("Failed obtaining file stat: ")
+		fmt.Println(err)
+	    return err
+	}
+	// get the size
+	size := fi.Size()
+
 
 	rpmi := &RPMInfo{
 		Repo:    repo,
 		Name:    dst.Name(),
-		Size:    dst.Stat().Size(),
+		Size:    size,
 		// Version: p.RPMVersion(),
 	}
 	return c.JSON(http.StatusOK, rpmi)
