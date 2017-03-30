@@ -15,7 +15,7 @@ import (
 type RPMInfo struct {
 	Repo    string `json:"repo" xml:"repo"`
 	Name    string `json:"name" xml:"name"`
-	Size    uint64 `json:"size" xml:"size"`
+	Size    int64 `json:"size" xml:"size"`
 	// Version string `json:"version" xml:"version"`
 }
 
