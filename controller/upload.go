@@ -35,6 +35,7 @@ func Upload(c echo.Context) error {
 	}
 	src, err := file.Open()
 	if err != nil {
+		fmt.Print("Error opening uploaded file")
 		fmt.Println(err)
 		return err
 	}
@@ -47,6 +48,7 @@ func Upload(c echo.Context) error {
 	// Destination
 	dst, err := os.Create(path + string(os.PathSeparator) + file.Filename)
 	if err != nil {
+		fmt.Print("Error creating the destination file")
 		fmt.Println(err)
 		return err
 	}
@@ -54,15 +56,19 @@ func Upload(c echo.Context) error {
 
 	// Copy
 	if _, err = io.Copy(dst, src); err != nil {
+		fmt.Print("Error copying file to destination")
 		fmt.Println(err)
 		return err
 	}
 
 	p, err := rpm.OpenPackageFile(path + string(os.PathSeparator) + file.Filename)
+	
 	if err != nil {
+		fmt.Print("Error opening package file")
 		fmt.Println(err)
 		return err
 	}
+
 	rpmi := &RPMInfo{
 		Repo:    repo,
 		Name:    p.Name(),
