@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"fmt"
 	"github.com/cavaliercoder/go-rpm"
 	"github.com/labstack/echo"
 	"github.com/spf13/viper"
