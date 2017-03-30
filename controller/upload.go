@@ -8,6 +8,12 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"github.com/op/go-logging"
+)
+
+var log = logging.MustGetLogger("example")
+var format = logging.MustStringFormatter(
+	`%{color}%{time:15:04:05.000} %{shortfunc} ▶ %{level:.4s} %{id:03x}%{color:reset} %{message}`,
 )
 
 // User
@@ -22,6 +28,10 @@ func Upload(c echo.Context) error {
 	// Read form fields
 	repo := c.FormValue("repo")
 
+	backend := logging.NewLogBackend(os.Stderr, "", 0)
+	backendLeveled := logging.AddModuleLevel(backend)
+	backendLeveled.SetLevel(logging.INFO, format)
+	logging.SetBackend(backendLeveled)
 	//-----------
 	// Read file
 	//-----------
@@ -29,12 +39,15 @@ func Upload(c echo.Context) error {
 	// Source
 	file, err := c.FormFile("data")
 	if err != nil {
+		log.Error(err)
 		return err
 	}
 	src, err := file.Open()
 	if err != nil {
+		log.Error(err)
 		return err
 	}
+
 	defer src.Close()
 
 	// Crate directory
@@ -44,19 +57,24 @@ func Upload(c echo.Context) error {
 	// Destination
 	dst, err := os.Create(path + string(os.PathSeparator) + file.Filename)
 	if err != nil {
+		log.Error(err)
 		return err
 	}
 	defer dst.Close()
 
 	// Copy
 	if _, err = io.Copy(dst, src); err != nil {
+		log.Error(err)
 		return err
 	}
 
 	p, err := rpm.OpenPackageFile(path + string(os.PathSeparator) + file.Filename)
+	
 	if err != nil {
+		log.Error(err)
 		return err
 	}
+
 	rpmi := &RPMInfo{
 		Repo:    repo,
 		Name:    p.Name(),

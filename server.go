@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
-	"github.com/radepal/RPRS/controller"
+	"github.com/zocimek/RPRS/controller"
 	"github.com/spf13/viper"
 	"net/http"
 )

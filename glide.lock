@@ -1,5 +1,5 @@
-hash: 139b2b9dbb937bec34cb580e2b0f4ec483c84f0e41f48abd8d019dc613bec9d0
-updated: 2017-01-16T18:56:03.950645489+01:00
+hash: d038b1fa4558cfca294aa270fcdba965bc52e50336a4795e69e67a32e7d4bbce
+updated: 2017-03-30T09:28:42.37775509+02:00
 imports:
 - name: github.com/cavaliercoder/go-rpm
   version: 067941e17bc40982becb50f059e946e9df9c7dbc
@@ -21,7 +21,7 @@ imports:
   - json/scanner
   - json/token
 - name: github.com/labstack/echo
-  version: 8d504c1b699c757b267255c53b3e5219f9974abc
+  version: 948d607539e92f3974d8f24951c8975d7342e24a
   subpackages:
   - middleware
 - name: github.com/labstack/gommon
@@ -41,6 +41,8 @@ imports:
   version: ca5e3819723d8eeaf170ad510e7da1d6d2e94a08
 - name: github.com/mitchellh/mapstructure
   version: bfdb1a85537d60bc7e954e600c250219ea497417
+- name: github.com/op/go-logging
+  version: b2cb9fa56473e98db8caba80237377e83fe44db5
 - name: github.com/pelletier/go-buffruneio
   version: df1e16fde7fc330a0ca68167c23bf7ed6ac31d6d
 - name: github.com/pelletier/go-toml
@@ -61,8 +63,6 @@ imports:
   version: 25f8b5b07aece3207895bf19f7ab517eb3b22a40
 - name: github.com/spf13/viper
   version: 5ed0fc31f7f453625df314d8e66b9791e8d13003
-- name: github.com/tylerb/graceful
-  version: 4df1190835320af7076dfcf27b3d071fd3612caf
 - name: github.com/valyala/fasttemplate
   version: 3b874956e03f1636d171bda64b130f9135f42cff
 - name: golang.org/x/crypto
