@@ -16,7 +16,7 @@ type RPMInfo struct {
 	Repo    string `json:"repo" xml:"repo"`
 	Name    string `json:"name" xml:"name"`
 	Size    uint64 `json:"size" xml:"size"`
-	Version string `json:"version" xml:"version"`
+	// Version string `json:"version" xml:"version"`
 }
 
 func Upload(c echo.Context) error {
@@ -61,20 +61,20 @@ func Upload(c echo.Context) error {
 		return err
 	}
 
-	fmt.Print("Opening rpm file to get metadata: " + path + string(os.PathSeparator) + file.Filename)
-	p, err := rpm.OpenPackageFile(path + string(os.PathSeparator) + file.Filename)
+	// fmt.Println("Opening rpm file to get metadata: " + path + string(os.PathSeparator) + file.Filename)
+	// p, err := rpm.OpenPackageFile(path + string(os.PathSeparator) + file.Filename)
 	
-	if err != nil {
-		fmt.Print("Error opening package file: ")
-		fmt.Println(err)
-		return err
-	}
+	// if err != nil {
+	// 	fmt.Print("Error opening package file: ")
+	// 	fmt.Println(err)
+	// 	return err
+	// }
 
 	rpmi := &RPMInfo{
 		Repo:    repo,
-		Name:    p.Name(),
-		Size:    p.Size(),
-		Version: p.RPMVersion(),
+		Name:    dst.Name(),
+		Size:    dst.Size()
+		// Version: p.RPMVersion(),
 	}
 	return c.JSON(http.StatusOK, rpmi)
 }
